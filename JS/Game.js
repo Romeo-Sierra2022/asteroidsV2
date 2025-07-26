@@ -1,6 +1,7 @@
 import Display from "../Platform/Display.js";
 import InputSystem from "../Platform/InputSystem.js";
 import SoundSystem from "../Platform/SoundSystem.js";
+import Player from "./GameObjects/player.js";
 
 export default class Game {
     constructor(params) {
@@ -26,16 +27,17 @@ export default class Game {
         this.soundSystem = new SoundSystem();
         this.soundSystem.init();
         window.requestAnimationFrame(this.tick.bind(this));
+        this.gameObjects.push(new Player(this.display.getDimensions()))
         // Sound/Display/Input
     }
     tick(timeStamp) {
         const elapsedTime = timeStamp - this.lastime;
         const dt = elapsedTime / 1000;
+        if(dt > 0.03) console.log(dt)
         this.lastime = timeStamp;
         this.update(dt);
         this.render();
         this.makeNoise();
-
         window.requestAnimationFrame(this.tick.bind(this));
     }
     update(dt) {
@@ -49,6 +51,7 @@ export default class Game {
         });
     }
     render() {
+        this.display.clear()
         this.gameObjects.forEach((gameObject) => {
             gameObject.render(this.display.getContext());
         });

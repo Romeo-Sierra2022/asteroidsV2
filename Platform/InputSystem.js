@@ -15,7 +15,7 @@ export default class InputSystem {
     setListeners() {
         document.addEventListener('keydown', (event)=> {
             // console.log(event)
-            switch(event) {
+            switch(event.key) {
                 case "ArrowLeft": {
                     this.inputObject.left = true;
                 }
@@ -25,6 +25,7 @@ export default class InputSystem {
                 }
                 break;
                 case "ArrowUp": {
+
                     this.inputObject.thrust = true;
                 }
                 break;
@@ -41,7 +42,7 @@ export default class InputSystem {
         })
         document.addEventListener('keyup', (event)=> {
             // console.log(event)
-            switch(event) {
+            switch(event.key) {
                 case "ArrowLeft": {
                     this.inputObject.left = false;
                 }

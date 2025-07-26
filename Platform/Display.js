@@ -18,18 +18,23 @@ export default class Display {
             height: this.height,
         };
     }
+    clear() {
+        this.ctx.clearRect(0, 0, this.width, this.height);
+    }
     getContext() {
         return this.ctx;
     }
     goFullScreen() {
-        this.canvas.requestFullscreen()
+        this.canvas.requestFullscreen();
     }
     exitFullScreen() {
-        document.exitFullscreen()
+        document.exitFullscreen();
     }
-        _resize() {
+    _resize() {
+        console.log("resize")
         this.width = window.innerWidth;
         this.height = window.innerHeight;
-        this.hasResized = true;
+        this.canvas.width = this.width
+        this.canvas.height = this.height
     }
 }
